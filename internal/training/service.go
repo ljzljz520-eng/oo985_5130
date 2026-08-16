@@ -172,7 +172,7 @@ func (service *Service) PublishCourse(actor Actor, courseID string) error {
 		if course.TeacherID != actor.ID {
 			return ErrForbidden
 		}
-		if course.ReviewedAt.IsZero() {
+		if course.Status != StatusApproved {
 			return ErrInvalidTransition
 		}
 		course.Status = StatusPublished
